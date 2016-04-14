@@ -31,7 +31,7 @@ def _iterate(a, s, t, b, u, e, m):
             return x_next, i, error
         x_n = x_next
     # A good approximation was not found in a reasonable number of iterations.
-    return None, i, m
+    return None, m, util.norm(a.dot(x_n) - b)
 
 def jacobi(a_b_aug, u, e, m):
     a = a_b_aug[:, :-1]
