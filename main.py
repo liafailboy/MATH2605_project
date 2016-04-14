@@ -1,8 +1,5 @@
 import numpy as np
 
-import iterative_methods
-
-
 def parse(filename):
 	return np.loadtxt(filename)
 
@@ -57,20 +54,6 @@ def solve_qr_givens(a_b_aug):
 	:returns: n*1 vector solution x and the error ||Ax - b||\inf
 	"""
 	pass
-
-# part d
-def jacobi_iter(a_b_aug, u, e, m):
-	"""Approximates the solution to the system Ax = b
-	using Jacobi iterative method
-
-	:param a_b_aug: n*(n + 1) augmented matrix {A|b}
-	:param u: the n*1 vector for the initial guess of x_0
-	:param e: tolerance that determines when the approximation is close enough
-	"""
-	x_n, iterations, error =  iterative_methods.jacobi(a_b_aug, u, e, m)
-	print('Closest approximation of x: %s' % x_n)
-	print('Number of iterations: %d' % iterations)
-	print('Error of ||Ax_n - b||\inf: %f' % error)
 
 def gs_iter(a_b_aug, e, m):
 	"""Approximates the solution to the system Ax = b
