@@ -46,3 +46,6 @@ def gauss_seidel(a_b_aug, u, e, m):
     s = _make_s_gs(a)
     t = a - s
     return _iterate(a, s, t, b, u, e, m)
+
+def power(a, u_0, w, e, m):
+    pass

@@ -40,8 +40,9 @@ Testing `gs_iter` is the same as Jacobi. Run:
     python gs_driver.py <path_to_augmented_matrix> <path_to_x_0> <e> <m>
     python gs_driver.py test/iter_aug.dat test/iter_x_0.dat 0.0001 10
 
-TODO: Add instructions on running these parts of the code.
-
 ## (e) `power_method`: Power Method
 
-TODO: Add instructions on running this part of the code.
+To test `power_method`, run:
+
+    python power_driver.py <path_to_matrix_A> <path_to_x_0> <path_to_w> <e> <m>
+    python power_driver.py test/power_A.dat test/power_x_0.dat test/power_w.dat 0.0001 30

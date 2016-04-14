@@ -55,36 +55,6 @@ def solve_qr_givens(a_b_aug):
 	"""
 	pass
 
-def gs_iter(a_b_aug, e, m):
-	"""Approximates the solution to the system Ax = b
-	using Gauss-Seidel iterative method
-
-	:param a_b_aug: n*(n + 1) augmented matrix {A|b}
-	:param e: tolerance that determines when the approximation is close enough
-	:returns: approximate solution x_n, number of iterations n, and the error
-		||Ax_n - b||\inf
-	"""
-	pass
-
-# part e
-def power_method(a, u_0, w, e, m):
-	"""Approximates an eigenvalue and associated eigenvector of an n*n matrix
-	using the power method. If the procedure iterates M times and has not
-	attained an answer with sufficient accuracy, returns tuple (None, M)
-
-	:param a: n*n matrix A with floating-point real numbers as entries (n >= 2)
-	:param u_0: n*1 vector u_0 of n floating point real numbers that serves as
-		initial guess for an eigenvector of A
-	:param w: n*1 vector w of n floating point real numbers that serves as an
-		auxiliary vector
-	:param e: tolerance that determines when the approximation is close enough
-	:param m: positive integer M giving the maximum number of times to iterate
-		the power method before quitting
-	:returns: approximate largest eigenvalu lambda_N in view of absolute value,
-		the corresponding eigenvector u_N, and the iteration number N
-	"""
-	pass
-
 # main
 if __name__ == "__main__":
 	print parse("test/1_H.dat")
