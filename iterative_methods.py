@@ -23,11 +23,14 @@ def _iterate(a, s, t, b, u, e, m):
     s_inverse =  np.linalg.inv(s)
     x_n = u
     for i in range(1, m+1):
-        x_next = s_inverse * (x_n * t + b)
+        print x_n
+        x_next = s_inverse.dot(-t.dot(x_n) + b)
         tolerance = util.norm(x_next - x_n)
+        print x_next
         if tolerance <= e:
-            error = util.norm(a * x_next - b)
+            error = util.norm(-t.dot(x_next) - b)
             return x_next, i, error
+        x_n = x_next
     # A good approximation was not found in a reasonable number of iterations.
     return None, i, m
 

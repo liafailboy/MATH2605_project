@@ -18,7 +18,7 @@ def jacobi_iter(a_b_aug, u, e, m):
 def print_usage():
     print 'Sample Usage:'
     print 'python jacobi_driver.py <path_to_augmented_matrix> <path_to_x_0> <e> <m>'
-    print 'python jacobi_driver.py test/iter_aug.dat test/iter_x_0.dat 0.0001 10'
+    print 'python jacobi_driver.py test/iter_aug.dat test/iter_x_0.dat 0.0001 30'
 
 def main():
     if len(argv) != 5:
