@@ -25,13 +25,13 @@ def _iterate(a, s, t, b, u, e, m):
     x_n = u
     for i in range(1, m+1):
         x_next = s_inverse.dot(-t.dot(x_n) + b)
-        tolerance = util.norm(x_next - x_n)
+        tolerance = util.norm_inf(x_next - x_n)
         if tolerance <= e:
-            error = util.norm(a.dot(x_next) - b)
+            error = util.norm_inf(a.dot(x_next) - b)
             return x_next, i, error
         x_n = x_next
     # A good approximation was not found in a reasonable number of iterations.
-    return None, m, util.norm(a.dot(x_n) - b)
+    return None, m, util.norm_inf(a.dot(x_n) - b)
 
 def jacobi(a_b_aug, u, e, m):
     a = a_b_aug[:, :-1]
@@ -48,4 +48,13 @@ def gauss_seidel(a_b_aug, u, e, m):
     return _iterate(a, s, t, b, u, e, m)
 
 def power(a, u_0, w, e, m):
-    pass
+    u_n = u_0
+    for i in range(1, m+1):
+        u_next = a.dot(u_n)
+        u_next = u_next / util.norm(u_next)
+        tolerance = util.norm_inf(u_next - u_n)
+        if tolerance <= e:
+            eiganvalue = w.dot(u_next) / w.dot(u.n)
+            eiganvector = util.find_eiganvector(a, eiganvalue)
+            return eiganvalue, eiganvector, i
+    return None, None, m
