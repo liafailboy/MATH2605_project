@@ -11,7 +11,34 @@ def lu_fact(a):
 	:param a: n*n matrix A
 	:returns: matrices L, U, and the error ||LU - A||\inf
 	"""
-	pass
+	n = a.shape[0]
+	u = np.copy(a)
+	transformations = []
+	for i in range(n - 1):
+		t = identity(n)
+		pivot = u[i][i]
+		for j in range(i + 1, n):
+			factor = - u[j][i] / (1.* (pivot))
+			u[j] += factor * u[i]
+			t[j] += factor * t[i]
+		transformations.insert(0, t)
+	if len(transformations) > 1:
+		l_inv = reduce(np.dot, transformations)
+	else:
+		l_inv = transformations[0]
+	l = np.linalg.inv(l_inv)
+	err = np.dot(np.linalg.inv(l_inv), u) - a
+	return l, u, np.max(np.absolute(err))
+
+
+def identity(n):
+	"""Returns n*n elementary matrix"""
+	identity = np.zeros([n, n])
+	for i in range(n):
+		identity[i][i] = 1
+	return identity
+
+
 
 
 
