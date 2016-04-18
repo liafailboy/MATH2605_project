@@ -3,11 +3,11 @@ Calc lll for CS at Georgia Tech.
 
 ## Sam
 
-Problems d) and e) and writing section 1 (Hilbert Matrix)
+Problems d) and e) and writing sections 1 (Hilbert Matrix) and 2 (Iterative Methods)
 
 ## Jessica
 
-Writing code to read/write matrix files, a), and writing sections 2 and 3 (Iterative Method and Power Method)
+Writing code to read/write matrix files, a), and writing section 3 (Power Method)
 
 ## Shotaro
 b) and c)
@@ -34,7 +34,7 @@ To test `solve_lu`, run:
     python solve_lu_driver.py test/solve_A.dat
 
 To test `solve_qr_house` or `solve_qr_givens`, run:
-	
+
 	python solve_qr_driver.py <path_to_matrix> <way_to_calculate>
     python solve_qr_driver.py test/solve_A.dat house
     python solve_qr_driver.py test/solve_A.dat givens
@@ -59,3 +59,24 @@ To test `power_method`, run:
 
     python power_driver.py <path_to_matrix_A> <path_to_x_0> <path_to_w> <e> <m>
     python power_driver.py test/power_A.dat test/power_x_0.dat test/power_w.dat 0.0001 30
+
+## Writing Question 1: The Hilbert Matrix
+
+TODO: Add explanation on how to run this code.
+
+## Writing Question 2: Iterative Methods
+
+To get data for part I, run:
+
+    python writing_2_part_I.py.
+
+To get data for part II run:
+
+    python writing_2_part_II.py.
+
+Data for both of these has been loaded into Excel files that can be found in `writing/2/Writing_2_part_{I|II}.xlsx`.
+There are also images of scatterplots accompanying both files.
+
+## Writing Question 3: Power Method:
+
+TODO: Give brief explanation of how to run this part.
