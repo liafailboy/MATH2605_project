@@ -19,6 +19,10 @@ def solve_qr_house(a_b_aug):
 	:param a_b_aug: n*(n + 1) augmented matrix {A|b}
 	:returns: n*1 vector solution x and the error ||Ax - b||\inf
 	"""
+
+    a = a_b_aug[:,:-1]
+    b = a_b_aug[:,-1]
+
 	print_result(a_b_aug, 0.3)
 
 def solve_qr_givens(a_b_aug):
@@ -28,6 +32,10 @@ def solve_qr_givens(a_b_aug):
 	:param a_b_aug: n*(n + 1) augmented matrix {A|b}
 	:returns: n*1 vector solution x and the error ||Ax - b||\inf
 	"""
+
+    a = a_b_aug[:,:-1]
+    b = a_b_aug[:,-1]
+
 	print_result(a_b_aug, 0.5)
 
 def print_result(x, error):
