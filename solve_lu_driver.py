@@ -1,5 +1,5 @@
 import numpy as np
-import lu_fact
+import lu_fact_driver
 from sys import argv
 
 def main():
@@ -19,7 +19,7 @@ def solve_lu(a_b_aug):
     a = a_b_aug[:,:-1]
     b = a_b_aug[:,-1]
     # lu factorize a
-    l, u, error = lu_fact.lu_fact(a)
+    l, u, error = lu_fact_driver.lu_fact(a)
     # forward substitution
     y = np.zeros(b.size)
     for m, b in enumerate(b.flatten()):
