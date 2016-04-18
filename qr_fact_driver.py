@@ -40,8 +40,11 @@ def qr_fact_house(a):
         r = np.dot(q_i, r)
         q = np.dot(q, q_i.T)
 
+        errorM = np.dot(q, r) - a
+        error = find_max(errorM)
+
     #print_result(q, r, error)
-    return(q, r, 0.3)
+    return(q, r, error)
 
 def qr_fact_givens(a):
     """Computes QR-factorization of n*n matrix A with Givens rotations
@@ -69,8 +72,15 @@ def qr_fact_givens(a):
             r = np.dot(u, r)
             q = np.dot(q, u.T)
 
+            error = 0
+            errorM = multiply(q,r) - a
+            for i in range(errorM.shape[0]):
+                for j in range(errorM.shape[1]):
+                    if (error < errorM[i, j]):
+                        error = errorM[i, j]
+
     #print_result(q, r, error)
-    return(q, r, 0.5)
+    return(q, r, error)
 
 def givens_helper(a, b):
     """Helper function for givens rotation"""
@@ -89,6 +99,22 @@ def identity(n):
         identity[i][i] = 1
     # return matrix
     return identity
+
+def find_max(a):
+    b = a[0,0]
+    for i in range (a.shape[0]):
+        for j in range (a.shape[1]):
+            if a[i,j] > b:
+                b = a[i,j]
+    return b
+
+def multiply(a, b):
+    r = np.zeros((a.shape[0], b.shape[1]))
+    for i in range(len(a)):
+        for j in range(len(b[0])):
+            for k in range(len(b)):
+                r[i][j] += a[i][k] * b[k][j]
+    return r
 
 def print_result(q, r, error):
     # print result
