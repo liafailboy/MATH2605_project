@@ -15,3 +15,10 @@ def find_eiganvector(A, eiganvalue):
     for i in range(len(A)):
         A[i, i] -= eiganvalue
     return find_null_space(A)[0]
+
+def average(vectors):
+    total = np.zeros(len(vectors[0]))
+    for vector in vectors:
+        total += vector
+    total /= len(vectors)
+    return total
