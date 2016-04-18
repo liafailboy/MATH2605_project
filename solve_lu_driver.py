@@ -14,7 +14,13 @@ def solve_lu(a_b_aug):
 	:param a_b_aug: n*(n + 1) augmented matrix {A|b}
 	:returns: n*1 vector solution x and the error ||Ax - b||\inf
 	"""
-	print("solve with lu")
+	print_result(a_b_aug, 0.3)
+
+def print_result(x, error):
+    print("x:")
+    print(x)
+    print("")
+    print("Error ||Ax - b||\inf: %f" % error)
 
 def print_usage():
     print 'Sample:'

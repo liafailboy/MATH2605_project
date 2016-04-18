@@ -30,8 +30,12 @@ def qr_fact_givens(a):
     print_result(a, a, 0.5)
 
 def print_result(q, r, error):
-    print("Q: %s" % q)
-    print("R: %s" % r)
+    print("Q:")
+    print(q)
+    print("")
+    print("R:")
+    print(r)
+    print("")
     print("Error ||QR - A||\inf: %f" % error)
 
 def print_usage():
