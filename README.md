@@ -20,11 +20,24 @@ TODO: Add instructions on running this part of the code.
 
 ## (b) `qr_fact_house` and `qr_fact_givens`: QR Factorization
 
-TODO: Add instructions on running this part of the code.
+To test `qr_fact_house` or `qr_fact_givens`, run:
+
+	python qr_fact_driver.py <path_to_matrix> <way_to_calculate>
+    python qr_fact_driver.py test/qr_A.dat house
+    python qr_fact_driver.py test/qr_A.dat givens
 
 ## (c) `solve_lu`, `solve_qr_house`, and `solve_qr_givens`: Solving Factorizations
 
-TODO: Add instructions on running these parts of the code.
+To test `solve_lu`, run:
+
+	python solve_lu_driver.py <path_to_augmented_matrix>
+    python solve_lu_driver.py test/solve_A.dat
+
+To test `solve_qr_house` or `solve_qr_givens`, run:
+	
+	python solve_qr_driver.py <path_to_matrix> <way_to_calculate>
+    python solve_qr_driver.py test/solve_A.dat house
+    python solve_qr_driver.py test/solve_A.dat givens
 
 ## (d) `jacobi_iter`, `gs_iter`: Iteration Methods
 
