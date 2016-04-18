@@ -19,7 +19,7 @@ def solve_qr_house(a_b_aug):
 	:param a_b_aug: n*(n + 1) augmented matrix {A|b}
 	:returns: n*1 vector solution x and the error ||Ax - b||\inf
 	"""
-	print("solve with qr house")
+	print_result(a_b_aug, 0.3)
 
 def solve_qr_givens(a_b_aug):
 	"""Solves the system Ax = b by QR-factorization with Givens rotations
@@ -28,7 +28,13 @@ def solve_qr_givens(a_b_aug):
 	:param a_b_aug: n*(n + 1) augmented matrix {A|b}
 	:returns: n*1 vector solution x and the error ||Ax - b||\inf
 	"""
-	print("solve with qr givens")
+	print_result(a_b_aug, 0.5)
+
+def print_result(x, error):
+    print("x:")
+    print(x)
+    print("")
+    print("Error ||Ax - b||\inf: %f" % error)
 
 def print_usage():
     print 'Sample:'
