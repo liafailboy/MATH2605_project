@@ -27,6 +27,7 @@ def qr_fact_house(a):
     q = np.identity(n)
     r = np.copy(a)
 
+    # householder algorithm
     for i in range(n - 1):
         s = r[i:, i]
         t = np.zeros_like(s)
@@ -40,8 +41,8 @@ def qr_fact_house(a):
         r = np.dot(q_i, r)
         q = np.dot(q, q_i.T)
 
-        errorM = np.dot(q, r) - a
-        error = find_max(errorM)
+    # calculate error
+    error = calc_error(q, r, a)
 
     #print_result(q, r, error)
     return(q, r, error)
@@ -59,6 +60,7 @@ def qr_fact_givens(a):
     q = np.identity(n)
     r = np.copy(a)
 
+    # givens rotation algorithm
     (rowA, colA) = np.tril_indices(n, -1, n)
     for (row, col) in zip(rowA, colA):
         if r[row, col] != 0:
@@ -72,12 +74,8 @@ def qr_fact_givens(a):
             r = np.dot(u, r)
             q = np.dot(q, u.T)
 
-            error = 0
-            errorM = multiply(q,r) - a
-            for i in range(errorM.shape[0]):
-                for j in range(errorM.shape[1]):
-                    if (error < errorM[i, j]):
-                        error = errorM[i, j]
+    # calculate error
+    error = calc_error(q, r, a)
 
     #print_result(q, r, error)
     return(q, r, error)
@@ -100,21 +98,11 @@ def identity(n):
     # return matrix
     return identity
 
-def find_max(a):
-    b = a[0,0]
-    for i in range (a.shape[0]):
-        for j in range (a.shape[1]):
-            if a[i,j] > b:
-                b = a[i,j]
-    return b
-
-def multiply(a, b):
-    r = np.zeros((a.shape[0], b.shape[1]))
-    for i in range(len(a)):
-        for j in range(len(b[0])):
-            for k in range(len(b)):
-                r[i][j] += a[i][k] * b[k][j]
-    return r
+def calc_error(q, r, a):
+    """Returns error between QR and A"""
+    errorM = (np.dot(q, r)) - a
+    error = np.absolute(np.max(errorM))
+    return error
 
 def print_result(q, r, error):
     # print result
