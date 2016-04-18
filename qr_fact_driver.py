@@ -19,7 +19,7 @@ def qr_fact_house(a):
     :param a: n*n matrix A
     :returns: matrices Q, R, and the error ||QR - A||\inf
     """
-    print("do householder")
+    print_result(a, a, 0.3)    
 
 def qr_fact_givens(a):
     """Computes QR-factorization of n*n matrix A with Givens rotations
@@ -27,7 +27,12 @@ def qr_fact_givens(a):
     :param a: n*n matrix A
     :returns: matrices Q, R, and the error ||QR - A||\inf
     """
-    print("do givens rotation")
+    print_result(a, a, 0.5)
+
+def print_result(q, r, error):
+    print("Q: %s" % q)
+    print("R: %s" % r)
+    print("Error ||QR - A||\inf: %f" % error)
 
 def print_usage():
     print 'Sample:'
