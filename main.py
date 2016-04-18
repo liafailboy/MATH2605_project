@@ -3,7 +3,6 @@ import numpy as np
 def parse(filename):
 	return np.loadtxt(filename)
 
-# part a
 def lu_fact(a):
 	"""Computes LU decomposition  for n*n matrix A
 
