@@ -43,16 +43,6 @@ def qr_fact_house(a):
     #print_result(q, r, error)
     return(q, r, 0.3)
 
-def identity(n):
-    """Returns n*n identity matrix"""
-    # create n by n zero matrix
-    identity = np.zeros([n, n])
-    # add 1 to i*i location
-    for i in range(n):
-        identity[i][i] = 1
-    # return matrix
-    return identity
-
 def qr_fact_givens(a):
     """Computes QR-factorization of n*n matrix A with Givens rotations
 
@@ -89,6 +79,16 @@ def givens_helper(a, b):
     t = -b / r
 
     return (s, t)
+
+def identity(n):
+    """Returns n*n identity matrix"""
+    # create n by n zero matrix
+    identity = np.zeros([n, n])
+    # add 1 to i*i location
+    for i in range(n):
+        identity[i][i] = 1
+    # return matrix
+    return identity
 
 def print_result(q, r, error):
     # print result
