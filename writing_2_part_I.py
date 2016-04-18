@@ -41,3 +41,9 @@ average_ratio = sum(jacobi_gs_ratios) / len(jacobi_gs_ratios)
 
 for error, gs_iteration, j_iteration in zip(initial_errors, gs_iterations, jacobi_iterations):
     print('%f, %d, %d' % (error, gs_iteration, j_iteration))
+
+print('')
+
+print('Average Gauss-Seidel Error: %f' % gs_error)
+print('Average Jacobi Error: %f' % jacobi_error)
+print('Ratio of Jacobi iterations / Gauss-Seidel Iterations: %f' % average_ratio)
