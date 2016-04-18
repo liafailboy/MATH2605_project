@@ -24,26 +24,15 @@ def solve_qr_house(a_b_aug):
     # decompose augmented matrix
     a = a_b_aug[:,:-1]
     b = a_b_aug[:,-1]
+    
     # qr factorize a with householder
     q, r, error = qr_fact_driver.qr_fact_house(a)
-    # forward substitution
-    y = np.zeros(b.size)
-    for m, b in enumerate(b.flatten()):
-        y[m] = b
-        if m:
-            for n in xrange(m):
-                y[m] -= y[n] * q[m,n]
-        y[m] /= q[m, m]
-    # backward substitution
-    x = np.zeros(b.size)
-    for mId in xrange(b.size):
-        m = b.size - mId - 1
-        x[m] = y[m]
-        if mId:
-            for nId in xrange(mId):
-                n = b.size - 1  - nId
-                x[m] -= x[n] * r[m,n]
-        x[m] /= r[m, m]
+    
+    # calculate x using least square
+    x = least_square(a, b, q, r)
+    
+    # calculate error of x
+    error = calc_error(a, x, b)
 
     #print_result(x, error)
     return(x, error)
@@ -59,29 +48,30 @@ def solve_qr_givens(a_b_aug):
     # decompose augmented matrix
     a = a_b_aug[:,:-1]
     b = a_b_aug[:,-1]
+    
     # qr factorize a with householder
     q, r, error = qr_fact_driver.qr_fact_givens(a)
-    # forward substitution
-    y = np.zeros(b.size)
-    for m, b in enumerate(b.flatten()):
-        y[m] = b
-        if m:
-            for n in xrange(m):
-                y[m] -= y[n] * q[m,n]
-        y[m] /= q[m, m]
-    # backward substitution
-    x = np.zeros(b.size)
-    for mId in xrange(b.size):
-        m = b.size - mId - 1
-        x[m] = y[m]
-        if mId:
-            for nId in xrange(mId):
-                n = b.size - 1  - nId
-                x[m] -= x[n] * r[m,n]
-        x[m] /= r[m, m]
+    
+    # calculate x using least square
+    x = least_square(a, b, q, r)
+    
+    # calculate error of x
+    error = calc_error(a, x, b)
 
-    #print_result(x, error)
+    print_result(x, error)
     return(x, error)
+
+def least_square(a, b, q, r):
+    """Returns x value by least square"""
+    _, n = r.shape
+    x = np.linalg.solve(r[:n, :], np.dot(q.T, b)[:n])
+    return x
+
+def calc_error(a, x, b):
+    """Returns error between Ax and b"""
+    errorM = (np.dot(a, x)) - b
+    error = np.absolute(np.max(errorM))
+    return error
 
 def print_result(x, error):
     print("x:")
