@@ -1,5 +1,6 @@
 import numpy as np
 from sys import argv
+from math import copysign, hypot
 
 def main():
     if len(argv) != 3:
@@ -19,7 +20,38 @@ def qr_fact_house(a):
     :param a: n*n matrix A
     :returns: matrices Q, R, and the error ||QR - A||\inf
     """
-    print_result(a, a, 0.3)    
+    # set n from matrix A
+    n = a.shape[0]
+
+    # initialize q and r
+    q = np.identity(n)
+    r = np.copy(a)
+
+    for i in range(n - 1):
+        s = r[i:, i]
+        t = np.zeros_like(s)
+        t[0] = copysign(np.linalg.norm(s), -a[i, i])
+        u = s + t
+        v = u / np.linalg.norm(u)
+
+        q_i = np.identity(n)
+        q_i[i:, i:] -= np.outer(v, v) * 2
+
+        r = np.dot(q_i, r)
+        q = np.dot(q, q_i.T)
+
+    #print_result(q, r, error)
+    return(q, r, 0.3)
+
+def identity(n):
+    """Returns n*n identity matrix"""
+    # create n by n zero matrix
+    identity = np.zeros([n, n])
+    # add 1 to i*i location
+    for i in range(n):
+        identity[i][i] = 1
+    # return matrix
+    return identity
 
 def qr_fact_givens(a):
     """Computes QR-factorization of n*n matrix A with Givens rotations
@@ -27,9 +59,39 @@ def qr_fact_givens(a):
     :param a: n*n matrix A
     :returns: matrices Q, R, and the error ||QR - A||\inf
     """
-    print_result(a, a, 0.5)
+    # set n from matrix A
+    n = a.shape[0]
+
+    # initialize q and r
+    q = np.identity(n)
+    r = np.copy(a)
+
+    (rowA, colA) = np.tril_indices(n, -1, n)
+    for (row, col) in zip(rowA, colA):
+        if r[row, col] != 0:
+            (s, t) = givens_helper(r[col, col], r[row, col])
+            
+            u = np.identity(n)
+            u[[col, row], [col, row]] = s
+            u[row, col] = t
+            u[col, row] = -t
+
+            r = np.dot(u, r)
+            q = np.dot(q, u.T)
+
+    #print_result(q, r, error)
+    return(q, r, 0.5)
+
+def givens_helper(a, b):
+    """Helper function for givens rotation"""
+    r = hypot(a, b)
+    s = a / r
+    t = -b / r
+
+    return (s, t)
 
 def print_result(q, r, error):
+    # print result
     print("Q:")
     print(q)
     print("")
