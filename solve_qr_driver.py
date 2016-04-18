@@ -46,7 +46,7 @@ def solve_qr_house(a_b_aug):
         x[m] /= r[m, m]
 
     #print_result(x, error)
-    return(x, 0.3)
+    return(x, error)
 
 def solve_qr_givens(a_b_aug):
     """Solves the system Ax = b by QR-factorization with Givens rotations
@@ -81,7 +81,7 @@ def solve_qr_givens(a_b_aug):
         x[m] /= r[m, m]
 
     #print_result(x, error)
-    return(x, 0.5)
+    return(x, error)
 
 def print_result(x, error):
     print("x:")

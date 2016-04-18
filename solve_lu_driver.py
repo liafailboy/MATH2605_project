@@ -40,7 +40,7 @@ def solve_lu(a_b_aug):
         x[m] /= u[m, m]
 
     #print_result(x, error)
-    return(x, 0.3)
+    return(x, error)
 
 def print_result(x, error):
     print("x:")
