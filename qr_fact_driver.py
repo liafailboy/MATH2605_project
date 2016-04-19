@@ -27,6 +27,7 @@ def qr_fact_house(a):
     q = np.identity(n)
     r = np.copy(a)
 
+    # householder algorithm
     for i in range(n - 1):
         s = r[i:, i]
         t = np.zeros_like(s)
@@ -40,8 +41,11 @@ def qr_fact_house(a):
         r = np.dot(q_i, r)
         q = np.dot(q, q_i.T)
 
+    # calculate error
+    error = calc_error(q, r, a)
+
     #print_result(q, r, error)
-    return(q, r, 0.3)
+    return(q, r, error)
 
 def qr_fact_givens(a):
     """Computes QR-factorization of n*n matrix A with Givens rotations
@@ -56,6 +60,7 @@ def qr_fact_givens(a):
     q = np.identity(n)
     r = np.copy(a)
 
+    # givens rotation algorithm
     (rowA, colA) = np.tril_indices(n, -1, n)
     for (row, col) in zip(rowA, colA):
         if r[row, col] != 0:
@@ -69,8 +74,11 @@ def qr_fact_givens(a):
             r = np.dot(u, r)
             q = np.dot(q, u.T)
 
+    # calculate error
+    error = calc_error(q, r, a)
+
     #print_result(q, r, error)
-    return(q, r, 0.5)
+    return(q, r, error)
 
 def givens_helper(a, b):
     """Helper function for givens rotation"""
@@ -89,6 +97,12 @@ def identity(n):
         identity[i][i] = 1
     # return matrix
     return identity
+
+def calc_error(q, r, a):
+    """Returns error between QR and A"""
+    errorM = (np.dot(q, r)) - a
+    error = np.absolute(np.max(errorM))
+    return error
 
 def print_result(q, r, error):
     # print result
