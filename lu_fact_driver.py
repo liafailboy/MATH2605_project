@@ -1,7 +1,6 @@
 import numpy as np
-
-def parse(filename):
-	return np.loadtxt(filename)
+from sys import argv
+import util
 
 def lu_fact(a):
 	"""Computes LU decomposition  for n*n matrix A
@@ -13,7 +12,7 @@ def lu_fact(a):
 	u = np.copy(a).astype(float)
 	transformations = []
 	for i in range(n - 1):
-		t = identity(n)
+		t = util.identity(n)
 		pivot = u[i][i]
 		if pivot == 0:
 			for x in range(i + 1, n):
@@ -34,15 +33,24 @@ def lu_fact(a):
 		l_inv = transformations[0]
 	l = np.linalg.inv(l_inv)
 	dist = np.dot(l, u) - a
-	return l, u, np.max(np.absolute(dist))
+	return l, u, util.norm_inf(dist)
 
-def identity(n):
-	"""Returns n*n identity matrix"""
-	identity = np.zeros([n, n])
-	for i in range(n):
-		identity[i][i] = 1
-	return identity
 
-# main
+def print_usage():
+    print('Sample Usage:')
+    print('python lu_driver.py <path_to_matrix_A>')
+    print('python lu_driver.py test/1_H.dat')
+
+
+def main():
+	if len(argv) != 2:
+		print_usage()
+		return
+	a = np.loadtxt(argv[1])
+	l, u, err = lu_fact(a)
+	print "L:", l
+	print "U:", u
+	print "Error:", err
+
 if __name__ == "__main__":
-	print parse("test/1_H.dat")
+	main()
