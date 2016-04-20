@@ -16,12 +16,15 @@ def main():
     inv_iterations = []
     dets = []
     traces = []
+    total_fails = 0
 
     for _ in range(200):
         i = 0
         vec = None
         inv_vec = None
+        tries = -1
         while vec is None or inv_vec is None:
+            i = 0
             a, a_inv = get_matrix()
             while vec is None and i < len(VECTORS):
                 val, vec, n_iter = power(a, VECTORS[i], VECTORS[i], 0.00005, 100)
@@ -30,6 +33,8 @@ def main():
             while inv_vec is None and i < len(VECTORS):
                 inv_val, inv_vec, inv_n_iter = power(a_inv, VECTORS[i], VECTORS[i], 0.00005, 100)
                 i += 1
+            tries += 1
+        total_fails += tries
         iterations.append(n_iter / 100.)
         inv_iterations.append(inv_n_iter / 100.)
         traces.append(trace(a))
@@ -50,6 +55,7 @@ def main():
           "Trace", 
           "Determinant vs Trace by A Inverse Power Iteration",
           "writing/3/writing_3_a_inv")
+    print "Number of rejected matrices: ", total_fails
 
 
 
