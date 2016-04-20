@@ -1,5 +1,4 @@
 import numpy as np
-import pickle
 
 from sys import stdout
 from iterative_methods import power

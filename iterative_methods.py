@@ -57,7 +57,7 @@ def power(a, u_0, w, e, m):
             w_dot_u = np.transpose(w).dot(u_n)
             # if w_dot_u == 0:
             #     return None, None, i
-            eigenvalue = np.transpose(w).dot(u_next) / w_dot_u
+            eigenvalue = np.transpose(w).dot(a.dot(u_n)) / w_dot_u
             eigenvector = u_next
             return eigenvalue, eigenvector, i
         u_n = u_next
