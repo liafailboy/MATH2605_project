@@ -34,7 +34,7 @@ def solve_qr_house(a_b_aug):
     # calculate error of x
     error = calc_error(a, x, b)
 
-    #print_result(x, error)
+    print_result(x, error)
     return(x, error)
 
 def solve_qr_givens(a_b_aug):
@@ -82,7 +82,7 @@ def print_result(x, error):
 def print_usage():
     print 'Sample:'
     print 'python solve_qr_driver.py <path_to_matrix> <way_to_calculate>'
-    print 'python solve_qr_driver.py test/solve_A.dat house'
+    print 'python solve_qr_driver.py test/2_Ab.dat house'
 
 if __name__ == '__main__':
     main()

@@ -30,7 +30,7 @@ def solve_lu(a_b_aug):
 
     error = calc_error(a, x, b)
 
-    #print_result(x, error)
+    print_result(x, error)
     return(x, error)
 
 def forward_substitution(a, b):
@@ -61,7 +61,7 @@ def print_result(x, error):
 def print_usage():
     print 'Sample:'
     print 'python solve_lu_driver.py <path_to_augmented_matrix>'
-    print 'python solve_lu_driver.py test/solve_A.dat'
+    print 'python solve_lu_driver.py test/2_Ab.dat'
 
 if __name__ == '__main__':
     main()

@@ -44,7 +44,7 @@ def qr_fact_house(a):
     # calculate error
     error = calc_error(q, r, a)
 
-    #print_result(q, r, error)
+    print_result(q, r, error)
     return(q, r, error)
 
 def qr_fact_givens(a):
@@ -77,7 +77,7 @@ def qr_fact_givens(a):
     # calculate error
     error = calc_error(q, r, a)
 
-    #print_result(q, r, error)
+    print_result(q, r, error)
     return(q, r, error)
 
 def givens_helper(a, b):
