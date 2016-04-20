@@ -16,7 +16,8 @@ b) and c)
 
 ## (a) `lu_fact`: LU Decomposition
 
-TODO: Add instructions on running this part of the code.
+To test `lu_fact` run:
+	`python lu_fact_driver.py <path_to_matrix>`
 
 ## (b) `qr_fact_house` and `qr_fact_givens`: QR Factorization
 
