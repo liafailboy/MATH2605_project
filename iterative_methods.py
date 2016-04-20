@@ -51,10 +51,14 @@ def power(a, u_0, w, e, m):
     u_n = u_0
     for i in range(1, m+1):
         u_next = a.dot(u_n)
-        u_next = u_next / util.norm(u_next)
+        u_next /= util.norm(u_next)
         tolerance = util.norm_inf(u_next - u_n)
         if tolerance <= e:
-            eiganvalue = w.dot(u_next) / w.dot(u.n)
-            eiganvector = util.find_eiganvector(a, eiganvalue)
-            return eiganvalue, eiganvector, i
+            w_dot_u = np.transpose(w).dot(u_n)
+            # if w_dot_u == 0:
+            #     return None, None, i
+            eigenvalue = np.transpose(w).dot(a.dot(u_n)) / w_dot_u
+            eigenvector = u_next
+            return eigenvalue, eigenvector, i
+        u_n = u_next
     return None, None, m

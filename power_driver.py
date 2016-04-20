@@ -5,7 +5,7 @@ from sys import argv
 def power_method(a, u_0, w, e, m):
 	"""Approximates an eigenvalue and associated eigenvector of an n*n matrix
 	using the power method. If the procedure iterates M times and has not
-	attained an answer with sufficient accuracy, returns tuple (None, M)
+	attained an answer with sufficient accuracy, returns tuple (None, None, M)
 
 	:param a: n*n matrix A with floating-point real numbers as entries (n >= 2)
 	:param u_0: n*1 vector u_0 of n floating point real numbers that serves as
@@ -15,10 +15,12 @@ def power_method(a, u_0, w, e, m):
 	:param e: tolerance that determines when the approximation is close enough
 	:param m: positive integer M giving the maximum number of times to iterate
 		the power method before quitting
+	:returns: appriximate largest eigenvalue in view of absolute value,
+		corresponding eigenvector, and the iteration number N
 	"""
-	eiganvalue, eiganvector, iterations =  iterative_methods.power(a, u_0, w, e, m)
-	print('Maximum eiganvalue in terms of absolute value: %s' % eiganvalue)
-	print('Corresponding eiganvector: %s' % eiganvector)
+	eigenvalue, eigenvector, iterations =  iterative_methods.power(a, u_0, w, e, m)
+	print('Maximum eigenvalue in terms of absolute value: %s' % eigenvalue)
+	print('Corresponding eigenvector: %s' % eigenvector)
 	print('Number of iterations: %d' % iterations)
 
 def print_usage():
