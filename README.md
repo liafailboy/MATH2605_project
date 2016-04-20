@@ -62,7 +62,11 @@ To test `power_method`, run:
 
 ## Writing Question 1: The Hilbert Matrix
 
-TODO: Add explanation on how to run this code.
+To generate the data, run:
+
+    python writing_1.py
+
+The data has already been exported to an Excel file in `/writing/1/Writing_1_matrix_error.xlsx`.
 
 ## Writing Question 2: Iterative Methods
 
