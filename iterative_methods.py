@@ -55,11 +55,10 @@ def power(a, u_0, w, e, m):
         tolerance = util.norm_inf(u_next - u_n)
         if tolerance <= e:
             w_dot_u = np.transpose(w).dot(u_n)
-            if w_dot_u == 0:
-                return None, None, i
+            # if w_dot_u == 0:
+            #     return None, None, i
             eigenvalue = np.transpose(w).dot(u_next) / w_dot_u
             eigenvector = u_next
             return eigenvalue, eigenvector, i
-        else:
-            u_n = u_next
+        u_n = u_next
     return None, None, m
